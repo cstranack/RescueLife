@@ -27,16 +27,16 @@ app.get('/profile', (req, res) => {
 });
 
 
-mongoose.connect('mongodb://localhost:27017/handlebars', {
+mongoose.connect('mongodb://localhost:27017/RescueLife', {
     useUnifiedTopology: true,
     useNewUrlParser: true
 })
-.then(() => {
-    console.log('connected to the DB ');
-})
-.catch((err) => {
-    console.log('Not connected to DB with err :' + err);
-});
+    .then(() => {
+        console.log('connected to the DB ')
+    })
+    .catch((err) => {
+        console.log('Not connected to DB with err :' + err);
+    });
 
 
 
