@@ -20,11 +20,14 @@ app.engine('hbs', handlebars.engine({
 }));
 
 app.use(express.static('public'));
-app.use(session({
-    secret: 'mySecret',
-    resave: true,
-    saveUninitialized: true
-}));
+app.use(
+    session({
+        secret: 'mySecret',
+        resave: true,
+        saveUninitialized: true,
+        cookie: { maxAge: 60000 }
+    })
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -36,7 +39,7 @@ app.use(bodyParser.urlencoded({ extended: false}));
 
 //presenting the index page with the main layout
 app.get('/dashboard', isAuth, (req, res) => {
-    Contact.find({}).lean()
+    Contact.find({ user: req.user.id }).lean()
     .exec((err, contacts) =>{
         if(contacts.length){
             res.render('dashboard', {layout: 'main', contacts: contacts, contactsExist: true, username: req.user.username }); 
@@ -82,7 +85,7 @@ app.post('/signin', (req, res, next) => {
     try{
         passport.authenticate('local',{
             successRedirect: '/dashboard',
-            failureRedirect: '/'
+            failureRedirect: '/?incorrectLogin'
         })(req, res, next);
     } catch(err){
         console.log(err.message);
@@ -99,12 +102,13 @@ app.get('/signout', (req, res) =>{
 app.post('/addContact', (req, res) =>{
     const { name, email, number } = req.body;
     var contact = new Contact({
+        user: req.user.id,
         name,
         email,
         number
     });
     contact.save();
-    res.redirect('/dashboard');
+    res.redirect('/dashboard?contactSaved');
 });
 
 
