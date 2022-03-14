@@ -1,0 +1,127 @@
+{{!-- <form action="/addContact" method="POST">
+    <input type="text" name="name" placeholder="Enter Name">
+    <input type="text" name="email" placeholder="Enter Email">
+    <input type="text" name="number" placeholder="Enter Number">
+    <input type="submit" value="submit" class="btn waves-effect waves-light">
+</form> --}}
+
+
+<form action="/addPet" method="POST">
+    <div id="petForm">
+        <div class="row">
+            <div class="col s6">
+                <h3 class="formTitles">Pet Name</h3>
+                <input type="text" id="petName" name="petName" placeholder="Pet Name">
+            </div>
+            <div class="col s6">
+                <div class="input-field" id="BreedPetForm">
+                    <h3 class="formTitles">Breed</h3>
+                    <input placeholder="German Shepard" name="breed" id="breed" type="text" class="validate">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s3">
+                <div id="CategoryPetForm">
+                    <h3 class="formTitles" for="category">Category</h3>
+                    <p>
+                        <label>
+                            <input class="with-gap" id="Dog"  name="category" type="radio" checked />
+                            <span>Dog</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input class="with-gap" id="Cat" name="category" type="radio" />
+                            <span>Cat</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input class="with-gap" id="Equine" name="category" type="radio" />
+                            <span>Equine</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input class="with-gap" id="Other" name="category" type="radio" />
+                            <span>Other</span>
+                        </label>
+                    </p>
+                </div>
+
+            </div>
+            <div class="col s6">
+                <div class="input-field" id="SpeciesPetForm">
+                    <h3 class="formTitles" for="species">Species</h3>
+                    <input placeholder="Rabbit" id="species" type="text" class="validate">
+                </div>
+            </div>
+            <div class="col s3">
+                <div class="input-field" id="AgePetForm">
+                    <h3 class="formTitles" for="age">Age (in years)</h3>
+                    <input placeholder="4" id="age" type="number" class="validate">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <h3 class="formTitles">Up for adoption?</h3>
+                <div class="switch petFormSwitch">
+                    <label>
+                        No
+                        <input name="adoptable" type="checkbox">
+                        <span class="lever"></span>
+                        Yes
+                    </label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s6">
+            <div class="row">
+                <h3 class="formTitles">Description</h3>
+                <div class="input-field col s12">
+                    <textarea id="description" placeholder="Description" class="materialize-textarea"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col s3">
+            <h3 class="formTitles">Hypoallergenic?</h3>
+            <div class="switch petFormSwitch" id="hypoPetForm">
+                <label>
+                    No
+                    <input name="hypo"  type="checkbox">
+                    <span class="lever" id="hypoSwitch"></span>
+                    Yes
+                </label>
+            </div>
+        </div>
+        <div class="col s3">
+            <div id="SizePetForm">
+                <h3 class="formTitles">Size</h3>
+                <p>
+                    <label>
+                        <input class="with-gap" name="size" id="small" type="radio" checked />
+                        <span>small</span>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input class="with-gap" name="size" id="medium" type="radio" />
+                        <span>medium</span>
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        <input class="with-gap" name="size" id="large" type="radio" />
+                        <span>large</span>
+                    </label>
+                </p>
+            </div>
+        </div>
+    </div>
+    <input type="submit" value="submit" class="btn">
+</form>

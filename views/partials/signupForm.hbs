@@ -1,17 +1,25 @@
-<h3>Sign Up</h3>
-{{#if userExist}}
-    <div class="card-panel red">
-        <span class="card-title ">User Already Exists</span>
-    </div>
-{{else}} {{#if userDoesNotExist}}
-  <div class="card-panel green">
-        <span class="card-title ">User Created, hooray!!!</span>
-    </div>
-{{/if}}{{/if}}
+<div class="container signUpForm">
+    <h1 class="title">Sign Up</h1>
 
-<form action="/signup" method="POST">
-    <input type="text" name="username" id="username" placeholder="Enter username/email">
-    <input type="password" name="password" id="password" placeholder="Enter password">
-    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password">
-    <input type="submit" value="submit" id="signUpSubmit" class="btn waves-effect waves-light">
-</form>
+    {{#if userExist}}
+    <div class="errorAlert">Oh no, email in use!</div>
+    {{else}} {{#if userDoesNotExist}}
+    <div class="successAlert">Woohoo, user created!</div>
+    {{/if}} {{/if}}
+    {{!-- <div class="input-field"> --}}
+        <form action="/signup" method="POST">
+            <div class="hiddenUsernameErrorAlert">Email Required
+            </div>
+            <div class="hiddenPasswordErrorAlert">Passwords Don't Match
+            </div>
+            {{!-- <input class="input-field" type="text" name="name" id="name" placeholder="Enter name"> --}}
+            <input class="input-field" type="text" name="logInUsername" id="usernameField" placeholder="Enter username/email">
+            <input class="input-field" type="password" name="password" id="passwordSignUp" placeholder="Enter password">
+            <input class="input-field" type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password">
+            <br>
+            <br>
+            <input type="submit" value="submit" id="signUpSubmit" class="btn">
+        </form>
+        {{!--
+    </div> --}}
+</div>

@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var Contact = require('./models/Contact');
 var User = require('./models/User');
+var Pet = require('./models/Pet');
 var bcrypt = require('bcryptjs');
 var passport = require('passport');
 var { isAuth } = require('./middleware/isAuth');
@@ -25,7 +26,7 @@ app.use(
         secret: 'mySecret',
         resave: true,
         saveUninitialized: true,
-        cookie: { maxAge: 60000 }
+        cookie: { maxAge: 6000000 }
     })
 );
 
@@ -39,17 +40,23 @@ app.use(bodyParser.urlencoded({ extended: false}));
 
 //presenting the index page with the main layout
 app.get('/dashboard', isAuth, (req, res) => {
-    Contact.find({ user: req.user.id }).lean()
-    .exec((err, contacts) =>{
-        if(contacts.length){
-            res.render('dashboard', {layout: 'main', contacts: contacts, contactsExist: true, username: req.user.username }); 
+    Pet.find({ user: req.user.id }).lean()
+    .exec((err, pets) =>{
+        if(pets.length){
+            res.render('dashboard', {layout: 'main', pets: pets, petsExist: true, username: req.user.username }); 
         } else{
-            res.render('dashboard', {layout: 'main', contacts: contacts, contactsExist: false}); 
+            res.render('dashboard', {layout: 'main', pets: pets, petsExist: false}); 
         }
     });
     //to find a specific thing
     //Contact.find({name: 'Claire'}).lean()
 });
+
+
+app.get('/profile', isAuth, (req, res) =>{
+    res.render('profile', {layout: 'main', username: req.user.username });
+});
+
 
 //login page
 app.get('/', (req, res) => {
@@ -65,6 +72,7 @@ app.post('/signup', async (req, res) =>{
             return res.status(400).render('login', {layout: 'main', userExist: true});
         }
         user = new User({
+            // name,
             username,
             password
         });
@@ -111,6 +119,22 @@ app.post('/addContact', (req, res) =>{
     res.redirect('/dashboard?contactSaved');
 });
 
+app.post('/addPet', (req, res) =>{
+    const { petName, adoptable, category, breed, species, age, size, hypo } = req.body;
+    var pet = new Pet({
+        user: req.user.id,
+        petName,
+        // adoptable,
+        // category,
+        breed
+        // species,
+        // age,
+        // size,
+        // hypo
+    });
+    pet.save();
+    res.redirect('/profile?saved');
+});
 
 mongoose.connect('mongodb://localhost:27017/RescueLife', {
     useUnifiedTopology: true,

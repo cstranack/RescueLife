@@ -1,8 +1,11 @@
-
-<h3>Sign In</h3>
-<div class="messageContainer"></div>
-<form action="/signin" method="POST">
-    <input type="text" name="username" placeholder="Enter username/email">
-    <input type="password" name="password" placeholder="Enter password">
-    <input type="submit" value="submit" class="btn waves-effect waves-light">
-</form>
+<div class="container logInForm">
+    <h1 class="title">Login</h1>
+    <div class="messageContainer"></div>
+    <form action="/signin" method="POST">
+        <input type="text" name="username" id="username" placeholder="Enter username/email">
+        <input type="password" name="password" id="password" placeholder="Enter password">
+        <br>
+        <br>
+        <input type="submit" id="signInSubmit" value="submit" class="btn">
+    </form>
+</div>
