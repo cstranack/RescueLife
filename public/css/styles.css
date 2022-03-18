@@ -265,13 +265,19 @@ p{
   color: #F6F6F7 !important;
 }
 
-
+/* trying to change the   */
 #small:checked, #meduim:checked, #large:checked{
   border: 2px solid #A2745C !important;
   background-color: #A2745C !important;
   border: 2px solid #A2745C !important;
 
+}
 
+#small{
+  border: 2px solid #A2745C !important;
+  background-color: #A2745C !important;
+  border: 2px solid #A2745C !important;
+  
 }
 
 
