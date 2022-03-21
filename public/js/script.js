@@ -6,44 +6,48 @@ const confirmPassword = document.querySelector('#confirmPassword');
 var noUsernameAlert = document.getElementsByClassName("hiddenUsernameErrorAlert");
 var noPasswordAlert = document.getElementsByClassName("hiddenPasswordErrorAlert");
 
+var globalVariable = {
+  dogs: false
+}
+
 //this code prevents empty fields being submitted to the database
-if(typeof (signUpSubmit) != 'underfined' && signUpSubmit != null){
-    signUpSubmit.addEventListener('click', (e) => {
-        if(usernameField.value === ''){
-            console.log("xxx");
-            e.preventDefault();
-            // toggle class to show 'no username' alert
-              noUsernameAlert[0].style.display = "inline-block";   
-        }
-        else{
-          noUsernameAlert[0].style.display = "none"; 
-        }
-  
-        if(password.value != confirmPassword.value){
-            e.preventDefault();
-            console.log("bbb");
-            var noPasswordAlert = document.getElementsByClassName("hiddenPasswordErrorAlert");
-            // toggle class to show 'passwords dont match' alert
-              noPasswordAlert[0].style.display = "inline-block";
-        }
-        else{
-          noPasswordAlert[0].style.display = "none"; 
-        }
-    });
-  }
+if (typeof (signUpSubmit) != 'underfined' && signUpSubmit != null) {
+  signUpSubmit.addEventListener('click', (e) => {
+    if (usernameField.value === '') {
+      console.log("xxx");
+      e.preventDefault();
+      // toggle class to show 'no username' alert
+      noUsernameAlert[0].style.display = "inline-block";
+    }
+    else {
+      noUsernameAlert[0].style.display = "none";
+    }
+
+    if (password.value != confirmPassword.value) {
+      e.preventDefault();
+      console.log("bbb");
+      var noPasswordAlert = document.getElementsByClassName("hiddenPasswordErrorAlert");
+      // toggle class to show 'passwords dont match' alert
+      noPasswordAlert[0].style.display = "inline-block";
+    }
+    else {
+      noPasswordAlert[0].style.display = "none";
+    }
+  });
+}
 
 
 const messageContainer = document.querySelector(".messageContainer");
 const queryString = window.location.search;
 
-if(queryString == '?incorrectLogin'){
-    messageContainer.innerHTML = `<div class="card-panel red">
+if (queryString == '?incorrectLogin') {
+  messageContainer.innerHTML = `<div class="card-panel red">
         <span class="card-title ">Incorrect Login Details</span>
     </div>`;
 }
 
-if(queryString == '?contactSaved'){
-    messageContainer.innerHTML = `<div class="card-panel green">
+if (queryString == '?contactSaved') {
+  messageContainer.innerHTML = `<div class="card-panel green">
         <span class="card-title ">Contact Saved</span>
     </div>`;
 }
@@ -73,16 +77,65 @@ if(queryString == '?contactSaved'){
 
 //   hinding parts of the form 
 function hideSpecies() {
-    if (document.getElementById("Other").checked == true){
-        (document.getElementById("SpeciesPetForm")).show();
-    } else {
-        (document.getElementById("SpeciesPetForm")).hide();
-      }
-    }
+  if (document.getElementById("Other").checked == true) {
+    (document.getElementById("SpeciesPetForm")).show();
+  } else {
+    (document.getElementById("SpeciesPetForm")).hide();
+  }
+}
 
 
 
- 
+// determining what filters have been activated
 
-
+function dogValidate() {
+  if (document.getElementById("dogSwitch").checked) {
+    // console.log("dog on")
+    var dogs = true;
+    return dogs;
+  } else {
+    // console.log("dog off")
+    var dogs = false;
+    return dogs;
+  }
   
+}
+
+console.log(dogs)
+
+
+function catValidate() {
+  if (document.getElementById("catSwitch").checked) {
+    console.log("cat on")
+  } else {
+    console.log("cat off")
+  }
+}
+
+function equineValidate() {
+  if (document.getElementById("equineSwitch").checked) {
+    console.log("equine on")
+  } else {
+    console.log("equine off")
+  }
+}
+
+function otherValidate() {
+  if (document.getElementById("otherSwitch").checked) {
+    console.log("other on")
+  } else {
+    console.log("other off")
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+

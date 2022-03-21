@@ -205,6 +205,10 @@ p{
       border-radius: 20px;
   }
 
+  .filtersPanel{
+    font-family: 'Raleway', sans-serif;
+  }
+
 
 
   .collapsible {
@@ -244,6 +248,12 @@ p{
   .petDashCard{
     border-radius: 20px;
     background-color: #F6F6F7;
+    max-width: 20%;
+    padding: 1%;
+    font-family: 'Raleway', sans-serif;
+    margin: auto;
+    margin-top: 20px;
+    
 
   }
 
@@ -297,6 +307,8 @@ p{
   .dogs, .cats, .equines, .others{
     border-radius: 20px;
     background-color: #F6F6F7;
+    font-family:'Raleway', sans-serif;
+    height: 100px;
   }
 
   #other{

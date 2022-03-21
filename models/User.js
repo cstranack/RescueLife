@@ -4,9 +4,9 @@ var mongoose = require('mongoose');
 //to be used in our front end files, so that we can save that data to our database.
 
 const UserSchema = new mongoose.Schema({
-    // name: {
-    //     type: String
-    // },
+    name: {
+        type: String
+    },
     username: {
         type: String
     },

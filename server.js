@@ -13,6 +13,8 @@ var { isAuth } = require('./middleware/isAuth');
 var session = require('express-session');
 require('./middleware/passport')(passport);
 
+// console.log(dogs);
+
 //establishing handlbars structure
 app.set('view engine', 'hbs');
 app.engine('hbs', handlebars.engine({
@@ -40,7 +42,7 @@ app.use(bodyParser.urlencoded({ extended: false}));
 
 //presenting the index page with the main layout
 app.get('/dashboard', isAuth, (req, res) => {
-    Pet.find({ user: req.user.id }).lean()
+    Pet.find({ user: req.user.id, }).lean()
     .exec((err, pets) =>{
         if(pets.length){
             res.render('dashboard', {layout: 'main', pets: pets, petsExist: true, username: req.user.username }); 
@@ -54,7 +56,7 @@ app.get('/dashboard', isAuth, (req, res) => {
 
 
 app.get('/profile', isAuth, (req, res) =>{
-    res.render('profile', {layout: 'main', username: req.user.username });
+    res.render('profile', {layout: 'main', name: req.user.name, username: req.user.username });
 });
 
 
@@ -65,14 +67,14 @@ app.get('/', (req, res) => {
 
 //sending data to the database
 app.post('/signup', async (req, res) =>{
-    const { username, password } = req.body;
+    const { name, username, password } = req.body;
     try{
         let user = await User.findOne({ username });
         if (user) {
             return res.status(400).render('login', {layout: 'main', userExist: true});
         }
         user = new User({
-            // name,
+            name,
             username,
             password
         });
@@ -120,17 +122,18 @@ app.post('/addContact', (req, res) =>{
 });
 
 app.post('/addPet', (req, res) =>{
-    const { petName, adoptable, category, breed, species, age, size, hypo } = req.body;
+    const { petName, adoptable, category, breed, species, age, size, hypo, description  } = req.body;
     var pet = new Pet({
         user: req.user.id,
         petName,
         // adoptable,
         // category,
-        breed
-        // species,
-        // age,
+        breed,
+        species,
+        age,
         // size,
-        // hypo
+        // hypo,
+        description
     });
     pet.save();
     res.redirect('/profile?saved');
@@ -153,3 +156,7 @@ mongoose.connect('mongodb://localhost:27017/RescueLife', {
 app.listen(3000,() => {
     console.log('Server listening on port 3000 :) ');
 });
+
+
+
+

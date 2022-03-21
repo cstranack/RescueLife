@@ -1,28 +1,28 @@
 var mongoose = require('mongoose');
 
 const PetSchema = new mongoose.Schema({
-    pet:{
+    user:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'pets'
+        ref: 'user'
     },
     petName: {
         type: String
     },
     // adoptable: {
-    //     type: Boolean
+    //     type: Boolean,
     // },
     // category: {
     //     type: String, possibleValues: ['Dog','Cat','Equine','Other']
     // },
-    // breed: {
-    //     type: String
-    // },
-    // species: {
-    //     type: String
-    // },
-    // age: {
-    //     type: Number
-    // },
+    breed: {
+        type: String
+    },
+    species: {
+        type: String
+    },
+    age: {
+        type: Number
+    },
     // size: {
     //     type: String
     // },
@@ -30,6 +30,9 @@ const PetSchema = new mongoose.Schema({
     //     type: Boolean,
     //     // default: False
     // },
+    description: {
+        type: String
+    },
     date: {
         type: Date,
         default: Date.now
