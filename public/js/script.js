@@ -84,21 +84,20 @@ function hideSpecies() {
   }
 }
 
-
+var dogs
 
 // determining what filters have been activated
 
-function dogValidate() {
+function dogValidate(dogs) {
   if (document.getElementById("dogSwitch").checked) {
-    // console.log("dog on")
-    var dogs = true;
+    console.log("dog on")
+    dogs = true;
     return dogs;
   } else {
-    // console.log("dog off")
-    var dogs = false;
+    console.log("dog off")
+    dogs = false;
     return dogs;
   }
-  
 }
 
 console.log(dogs)
@@ -128,8 +127,69 @@ function otherValidate() {
   }
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+  // var elems = document.querySelectorAll('.modal');
+  // var instances = M.Modal.init(elems);
+
+  var url = '/getImages';
+  var imageContainer = document.querySelector('#imageContainer')
+  fetch(url)
+    .then(res => res.json())
+    .then((data) => {
+      var dataFeed = data.map((image) => {
+        return `
+        <img class="petImage" src="${image.path}" alt="image of cat">`
+      }).join(" ");
+      imageContainer.innerHTML = dataFeed;
+    });
+});
 
 
+
+document.addEventListener('DOMContentLoaded', function () {
+  var url = '/getPets';
+  var petContainer = document.querySelector('#petContainer')
+  fetch(url)
+    .then(res => res.json())
+    .then((data) => {
+      var dataFeed = data.map((pet) => {
+        return `
+        <div class="card petDashCard">
+    <div class="row">
+        <div class="col s6">
+        <img class="petImage" src="${pet.path}" alt="Pet Image">
+        </div>
+        <div class="col s6">
+            <span class="card-title">${pet.petName}</span>
+            <p><b>Type:</b> ${pet.category}</p>
+            <p><b>Age:</b> ${pet.age} year(s)</p>
+            <p><b>Breed:</b> ${pet.breed}</p>
+            <p><b>About:</b> ${pet.description}</p>
+        </div>
+    </div>
+</div>
+        `
+
+      }).join(" ");
+      petContainer.innerHTML = dataFeed;
+    });
+});
+
+
+
+
+
+
+
+
+
+/* <div class="col s12 m2 l3">
+<div class="card">
+  <img class="petImage" src="${image.path}" alt="image of cat">
+  <p>${image.title}</p>
+  <p>${image.description}</p>
+</div>
+</div> */
 
 
 

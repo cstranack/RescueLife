@@ -8,12 +8,13 @@ const PetSchema = new mongoose.Schema({
     petName: {
         type: String
     },
-    // adoptable: {
-    //     type: Boolean,
-    // },
-    // category: {
-    //     type: String, possibleValues: ['Dog','Cat','Equine','Other']
-    // },
+    adoptable: {
+        type: Boolean,
+        default: false
+    },
+    category: {
+        type: String
+    },
     breed: {
         type: String
     },
@@ -21,16 +22,28 @@ const PetSchema = new mongoose.Schema({
         type: String
     },
     age: {
-        type: Number
+        type: String 
     },
-    // size: {
-    //     type: String
-    // },
-    // hypo: {
-    //     type: Boolean,
-    //     // default: False
-    // },
+    size: {
+        type: String
+    },
+    hypo: {
+        type: Boolean,
+        default: false
+    },
+    sex:{
+        type: String
+    },
     description: {
+        type: String
+    },
+    title: {
+        type: String
+    },
+    comment: {
+        type: String
+    },
+    path: {
         type: String
     },
     date: {
