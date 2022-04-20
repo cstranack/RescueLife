@@ -274,6 +274,8 @@ p{
 
   }
 
+  
+
   /* .filterSwitch{
       float: right;
   } */
@@ -349,5 +351,18 @@ p{
   }
 
 
+  .usersPetImage{
+    max-width: 100%;
+    border-radius: 15px;
 
+  }
+  
+  /* Explore page */
+
+  .allPetImage{
+    max-width: 100%;
+    border-radius: 15px;
+    margin-top: 15px;
+
+  }
 

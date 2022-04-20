@@ -75,14 +75,14 @@ if (queryString == '?contactSaved') {
 //   });
 
 
-//   hinding parts of the form 
-function hideSpecies() {
-  if (document.getElementById("Other").checked == true) {
-    (document.getElementById("SpeciesPetForm")).show();
-  } else {
-    (document.getElementById("SpeciesPetForm")).hide();
-  }
-}
+// //   hinding parts of the form 
+// function hideSpecies() {
+//   if (document.getElementById("Other").checked == true) {
+//     (document.getElementById("SpeciesPetForm")).show();
+//   } else {
+//     (document.getElementById("SpeciesPetForm")).hide();
+//   }
+// }
 
 var dogs
 
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  var url = '/getPets';
+  var url = '/getAdoptablePets';
   var petContainer = document.querySelector('#petContainer')
   fetch(url)
     .then(res => res.json())
@@ -179,7 +179,45 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+document.addEventListener('DOMContentLoaded', function () {
+  var url = '/getAllPets';
+  var allPetsContainer = document.querySelector('#allPetsContainer')
+  fetch(url)
+    .then(res => res.json())
+    .then((data) => {
+      var dataFeed = data.map((pet) => {
+        return `
+       
+          <div class="col l3 m4 s6 ">
+            <img class="allPetImage" src="${pet.path}" alt="Pet Image">
+          </div>
+      
+        `
+      }).join(" ");
+      allPetsContainer.innerHTML = dataFeed;
+    });
+});
 
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  var url = '/getUsersPets';
+  var usersPetsContainer = document.querySelector('#usersPetsContainer')
+  fetch(url)
+    .then(res => res.json())
+    .then((data) => {
+      var dataFeed = data.map((pet) => {
+        return `
+       
+          <div class="col s12 ">
+            <img class="usersPetImage" src="${pet.path}" alt="Pet Image">
+          </div>
+      
+        `
+      }).join(" ");
+      usersPetsContainer.innerHTML = dataFeed;
+    });
+});
 
 
 
@@ -191,6 +229,11 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>
 </div> */
 
+
+
+
+
+document.getElementById("Dog").scrollIntoView();
 
 
 
