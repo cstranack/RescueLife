@@ -59,7 +59,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-//presenting the index page with the main layout
+//presenting the dasboard page with the main layout
 app.get('/dashboard', isAuth, (req, res) => {
     Pet.find({}).lean()
         .exec((err, pets) => {
@@ -93,6 +93,14 @@ app.get('/social', isAuth, (req, res) => {
 });
 
 
+app.get('/about', (req, res) => {
+    Pet.find({ }).lean()
+        .exec((err, pets) => {
+            res.render('about', { layout: 'main' });
+        });
+});
+
+
 app.get('/explore', isAuth, (req, res) => {
     Pet.find({}).lean()
         .exec((err, pets) => {
@@ -104,6 +112,38 @@ app.get('/explore', isAuth, (req, res) => {
         });
 });
 
+
+app.get('/profileTemplate/:id', isAuth, (req, res) => {
+
+    var docID = req.params.id 
+    Pet.findById(docID,(err, doc) =>{
+        
+        if(err){
+            console.log(err)
+
+        }else{
+            console.log(doc)
+            res.render('profileTemplate', { layout: 'main', pets: doc, petsExist: true });
+        
+        }
+    })
+});
+
+
+app.get('/getPetProfile', isAuth, (req, res) => { 
+    Pet.find({  }, (err, docs) =>{
+        if (err) throw err;
+        res.send(docs);
+    })
+})
+
+
+app.get('/getUserProfile', isAuth, (req, res) => {
+    User.find({ }, (err, docs) => {
+        if (err) throw err;
+        res.send(docs);
+    })
+})
 
 
 
@@ -154,6 +194,10 @@ app.get('/getUsersPets', isAuth, (req, res) => {
         res.send(docs);
     })
 })
+
+
+
+
 
 
 //login page
@@ -240,6 +284,36 @@ app.post('/addPet', upload.single('image'), function (req, res, next) {
     pet.save();
     res.redirect('/userProfile?saved');
 });
+
+
+// app.post('/addPet', function (req, res, next) {
+//     const { petName, adoptable, category, breed, species, age, size, hypo, sex, description, title, comment } = req.body;
+//     var pet = new Pet({
+//         user: req.user.id,
+//         petName,
+//         adoptable,
+//         category,
+//         breed,
+//         species,
+//         age,
+//         size,
+//         hypo,
+//         sex,
+//         description,
+//         title,
+//         comment,
+//     });
+//     pet.save();
+//     res.redirect('/userProfile?saved');
+// });
+
+
+// app.post('/photos/upload', upload.array('photos', 12), function (req, res, next) {
+//     // req.files is array of `photos` files
+//     // req.body will contain the text fields, if there were any
+//   })
+
+
 
 mongoose.connect('mongodb://localhost:27017/RescueLife', {
     useUnifiedTopology: true,

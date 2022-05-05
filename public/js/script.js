@@ -1,4 +1,7 @@
 
+
+
+
 const usernameField = document.querySelector("#username");
 const signUpSubmit = document.querySelector("#signUpSubmit");
 const password = document.querySelector('#password');
@@ -127,22 +130,22 @@ function otherValidate() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  // var elems = document.querySelectorAll('.modal');
-  // var instances = M.Modal.init(elems);
+// document.addEventListener('DOMContentLoaded', function () {
+//   // var elems = document.querySelectorAll('.modal');
+//   // var instances = M.Modal.init(elems);
 
-  var url = '/getImages';
-  var imageContainer = document.querySelector('#imageContainer')
-  fetch(url)
-    .then(res => res.json())
-    .then((data) => {
-      var dataFeed = data.map((image) => {
-        return `
-        <img class="petImage" src="${image.path}" alt="image of cat">`
-      }).join(" ");
-      imageContainer.innerHTML = dataFeed;
-    });
-});
+//   var url = '/getImages';
+//   var imageContainer = document.querySelector('#imageContainer')
+//   fetch(url)
+//     .then(res => res.json())
+//     .then((data) => {
+//       var dataFeed = data.map((image) => {
+//         return `
+//         <img class="petImage" src="${image.path}" alt="image of cat">`
+//       }).join(" ");
+//       imageContainer.innerHTML = dataFeed;
+//     });
+// });
 
 
 
@@ -189,7 +192,8 @@ document.addEventListener('DOMContentLoaded', function () {
         return `
        
           <div class="col l3 m4 s6 ">
-            <img class="allPetImage" src="${pet.path}" alt="Pet Image">
+          <a href="/profileTemplate/${pet._id}" ><img class="allPetImage" src="${pet.path}" alt="Pet Image"></a>
+          <p>${pet._id}</p>
           </div>
       
         `
@@ -200,6 +204,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+
 document.addEventListener('DOMContentLoaded', function () {
   var url = '/getUsersPets';
   var usersPetsContainer = document.querySelector('#usersPetsContainer')
@@ -207,18 +212,109 @@ document.addEventListener('DOMContentLoaded', function () {
     .then(res => res.json())
     .then((data) => {
       var dataFeed = data.map((pet) => {
+        var newDate = new Date(pet.date).toDateString()
+
         return `
-       
-          <div class="col s12 ">
-            <img class="usersPetImage" src="${pet.path}" alt="Pet Image">
+
+        <h1>${pet.petName}</h1>
+  
+
+        <div class="row valign-wrapper">
+          <div class="col s2">
+            <button class="sliderButton" id="prev"><i class="material-icons">chevron_left</i></button>
           </div>
-      
+          <div class="col s8">
+            <img class="usersPetImage" src="${pet.path}" alt="Pet Image"/>
+            <br>
+            <div class="pictureDate">${newDate}</div>
+          </div>
+          <div class="col s2">
+              <button class="sliderButton" id="next"><i class="material-icons">chevron_right</i></button>
+          </div>
+        </div>
+        
+        <br> 
+        <br>
+       
+
+        <div class="row valign-wrapper">
+          <div class="col s10">
+            <div class="card usersPetCard">
+              <span class="card-title">${pet.petName}</span>
+              <p>${pet.petName} is a ${pet.age} year old ${pet.breed}</p>
+              <p><b>About:</b> ${pet.description}</p>
+            </div>
+          </div>
+          <div class="col s2">
+          <a href="/addImage/${pet._id}"><button class="editbutton">Edit Profile</button></a>
+          </div>
+
+
+        </div>
         `
-      }).join(" ");
+      }).join(" "); 
       usersPetsContainer.innerHTML = dataFeed;
     });
 });
 
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  var url = '/getPetProfile';
+  var petProfileContainer = document.querySelector('#petProfileContainer')
+  fetch(url)
+    .then(res => res.json())
+    .then((data) => {
+      var dataFeed = data.map((pet) => {
+        var newDate = new Date(pet.date).toDateString()
+        
+        return `
+
+        <h1>${pet.petName}</h1>
+        
+        
+        <div class="row valign-wrapper">
+          <div class="col s2">
+            <button class="sliderButton" id="prev"><i class="material-icons">chevron_left</i></button>
+          </div>
+          <div class="col s8">
+            <img class="usersPetImage" src="${pet.path}" alt="Pet Image"/>
+            <br>
+            <div class="pictureDate">${newDate}</div>
+          </div>
+          <div class="col s2">
+              <button class="sliderButton" id="next"><i class="material-icons">chevron_right</i></button>
+          </div>
+        </div>
+        
+        <br> 
+        <br>
+       
+
+        <div class="row valign-wrapper">
+          <div class="col s10">
+            <div class="card usersPetCard">
+              <span class="card-title">${pet.petName}</span>
+              <p>${pet.petName} is a ${pet.age} year old ${pet.breed}</p>
+              <p><b>About:</b> ${pet.description}</p>
+            </div>
+          </div>
+          <div class="col s2">
+          <a href="/addImage/${pet._id}"><button class="editbutton">Edit Profile</button></a>
+          </div>
+
+
+        </div>
+        `
+      }).join(" "); 
+      petProfileContainer.innerHTML = dataFeed;
+    });
+});
+
+
+/* <div class="buttonContainer"> */
 
 
 /* <div class="col s12 m2 l3">
@@ -230,15 +326,6 @@ document.addEventListener('DOMContentLoaded', function () {
 </div> */
 
 
-
-
-
-document.getElementById("Dog").scrollIntoView();
-
-
-
-
-
-
-
-
+ 
+// Image slider
+ 

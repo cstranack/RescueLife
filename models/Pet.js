@@ -44,7 +44,7 @@ const PetSchema = new mongoose.Schema({
         type: String
     },
     path: {
-        type: String
+        type: Array
     },
     date: {
         type: Date,
