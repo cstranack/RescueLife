@@ -5,6 +5,45 @@
 
 
 <div id="petProfileContainer">
+     <h1>{{this.petName}}</h1>
+        
+
+        <div class="row valign-wrapper">
+          <div class="col s2">
+            <button class="sliderButton" id="prev"><i class="material-icons">chevron_left</i></button>
+          </div>
+          <div class="col s8">
+            {{!-- <p id="imgs"></p> --}}
+            {{!-- <div class="sliderImages"></div> --}}
+            <img class="usersPetImage" id="imgs" alt="Pet Image"/>
+            
+            {{!-- <p>{{this[0].path}}</p> --}}
+            <br>
+            <div class="pictureDate" id="dateField"></div>
+          </div>
+          <div class="col s2">
+              <button class="sliderButton" id="next"><i class="material-icons">chevron_right</i></button>
+          </div>
+        </div>
+        
+        <br> 
+        <br>
+       
+
+        <div class="row valign-wrapper">
+          <div class="col s10">
+            <div class="card usersPetCard">
+              <span class="card-title">{{this.petName}}</span>
+              <p>{{this.petName}} is a {{this.age}} year old {{this.breed}}</p>
+              <p><b>About:</b> {{this.description}}</p>
+            </div>
+          </div>
+          <div class="col s2">
+          <a href="/addImage/{{this._id}}"><button class="editbutton">Edit Profile</button></a>
+          </div>
+
+
+        </div>
 
 </div>
 

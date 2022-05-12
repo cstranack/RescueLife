@@ -75,7 +75,7 @@ app.get('/dashboard', isAuth, (req, res) => {
 
 
 app.get('/userProfile', isAuth, (req, res) => {
-    Pet.find({}).lean()
+    Pet.find({ user: req.user.id}).lean()
         .exec((err, pets) => {
             if (pets.length) {
                 res.render('userProfile', { layout: 'main', pets: pets, name: req.user.name, username: req.user.username, petsExist: true });
@@ -84,6 +84,17 @@ app.get('/userProfile', isAuth, (req, res) => {
             }
         });
 });
+
+
+// app.get('/getUserProfile', isAuth, (req, res) => {
+//     User.find({ }, (err, docs) => {
+//         if (err) throw err;
+//         res.send(docs);
+//     })
+// })
+
+
+
 
 app.get('/social', isAuth, (req, res) => {
     Pet.find({ user: req.user.id }).lean()
@@ -113,37 +124,34 @@ app.get('/explore', isAuth, (req, res) => {
 });
 
 
+
+
+
 app.get('/profileTemplate/:id', isAuth, (req, res) => {
 
     var docID = req.params.id 
-    Pet.findById(docID,(err, doc) =>{
-        
-        if(err){
-            console.log(err)
-
-        }else{
-            console.log(doc)
-            res.render('profileTemplate', { layout: 'main', pets: doc, petsExist: true });
-        
-        }
-    })
+    Pet.find({ user: docID}).lean()
+        .exec((err, pets) => {
+            if (pets.length) {
+                res.render('profileTemplate', { layout: 'main', pets: pets, petsExist: true });
+            } else {
+                res.render('profileTemplate', { layout: 'main', pets: pets, petsExist: false });
+            }
+        });
 });
 
 
-app.get('/getPetProfile', isAuth, (req, res) => { 
-    Pet.find({  }, (err, docs) =>{
-        if (err) throw err;
-        res.send(docs);
-    })
-})
+// app.get('/getPetProfile/:id', isAuth, (req, res) => { 
+
+//     var docID = req.params.id 
+//     Pet.find({ docID }, (err, docs) =>{
+//         if (err) throw err;
+//         res.send(docs);
+//     })
+// })
 
 
-app.get('/getUserProfile', isAuth, (req, res) => {
-    User.find({ }, (err, docs) => {
-        if (err) throw err;
-        res.send(docs);
-    })
-})
+
 
 
 
@@ -180,6 +188,8 @@ app.get('/getAdoptablePets', isAuth, (req, res) => {
     })
 })
 
+
+//for explore page 
 app.get('/getAllPets', isAuth, (req, res) => {
     Pet.find({}, (err, docs) => {
         if (err) throw err;
@@ -188,6 +198,7 @@ app.get('/getAllPets', isAuth, (req, res) => {
 })
 
 
+//userProfile calls users pets
 app.get('/getUsersPets', isAuth, (req, res) => {
     Pet.find({ user: req.user.id }, (err, docs) => {
         if (err) throw err;
@@ -263,8 +274,15 @@ app.post('/addContact', (req, res) => {
 
 
 
-app.post('/addPet', upload.single('image'), function (req, res, next) {
+app.post('/addPet', upload.array('images', 5), function (req, res, next) {
     const { petName, adoptable, category, breed, species, age, size, hypo, sex, description, title, comment } = req.body;
+    const imagePathArray = []
+    console.log(req.files.length)
+    for(var i = 0; i < req.files.length; i++){
+        imagePathArray.push( req.files[i].path)
+        console.log(req.files[i].filename)
+    }
+    // console.log(req.files[0].path)
     var pet = new Pet({
         user: req.user.id,
         petName,
@@ -279,39 +297,13 @@ app.post('/addPet', upload.single('image'), function (req, res, next) {
         description,
         title,
         comment,
-        path: '/uploads/' + req.file.filename
+        path: imagePathArray
     });
     pet.save();
     res.redirect('/userProfile?saved');
 });
 
 
-// app.post('/addPet', function (req, res, next) {
-//     const { petName, adoptable, category, breed, species, age, size, hypo, sex, description, title, comment } = req.body;
-//     var pet = new Pet({
-//         user: req.user.id,
-//         petName,
-//         adoptable,
-//         category,
-//         breed,
-//         species,
-//         age,
-//         size,
-//         hypo,
-//         sex,
-//         description,
-//         title,
-//         comment,
-//     });
-//     pet.save();
-//     res.redirect('/userProfile?saved');
-// });
-
-
-// app.post('/photos/upload', upload.array('photos', 12), function (req, res, next) {
-//     // req.files is array of `photos` files
-//     // req.body will contain the text fields, if there were any
-//   })
 
 
 
