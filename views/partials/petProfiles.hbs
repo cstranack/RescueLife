@@ -5,21 +5,32 @@
 
 {{!-- design for pet profile pages --}}
 <div id="petProfileContainer">
-      <h1>{{this.petName}}</h1>
+  <h1>{{this.petName}}</h1>
 
   <div class="card usersPetCard">
     <div class="row valign-wrapper">
       <div class="col s2">
-        <button class="sliderButton" id="prev"><i class="material-icons">chevron_left</i></button>
+        <button class="sliderButton sliderButtonPrev" id="prev"><i class="material-icons">chevron_left</i></button>
       </div>
       <div class="col s8">
         {{!-- images here --}}
-        <img class="usersPetImage" src="{{this.path}}" alt="Pet Image" />
-        <br>
-        <div class="pictureDate">{{this.newDate}}</div>
+        {{!-- with / works for multiple images, without works for single --}}
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            {{#each path}}
+            
+              <div class="swiper-slide">
+                <img class="usersPetImage" src="/{{this}}" alt="Pet Image" />
+              </div>
+            
+            {{/each}}
+          </div>
+        </div>
+
+
       </div>
       <div class="col s2">
-        <button class="sliderButton" id="next"><i class="material-icons">chevron_right</i></button>
+        <button class="sliderButton sliderButtonNext" id="next"><i class="material-icons">chevron_right</i></button>
       </div>
     </div>
 
@@ -30,9 +41,9 @@
     <div class="row valign-wrapper">
       <div class="col s12">
         <p>{{this.petName}} is a {{this.age}} year old {{this.breed}}</p>
-        
+
         <hr class="profileDivider">
-        
+
         <p>{{this.description}}</p>
         <br>
         <a href=""><button class="editbutton">Edit Profile</button></a>
@@ -41,6 +52,10 @@
   </div>
 
 </div>
+
+
+
+
 
 
 

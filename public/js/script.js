@@ -9,9 +9,8 @@ const confirmPassword = document.querySelector('#confirmPassword');
 var noUsernameAlert = document.getElementsByClassName("hiddenUsernameErrorAlert");
 var noPasswordAlert = document.getElementsByClassName("hiddenPasswordErrorAlert");
 
-var globalVariable = {
-  dogs: false
-}
+
+
 
 //this code prevents empty fields being submitted to the database
 if (typeof (signUpSubmit) != 'underfined' && signUpSubmit != null) {
@@ -208,8 +207,8 @@ document.addEventListener('DOMContentLoaded', function () {
       var dataFeed = data.map((pet) => {
         var dateField = document.querySelector('#dateField')
         // dateField.innerHTML = new Date(pet.date).toDateString()
-        // const petArray = [pet.path]
-        // console.log(petArray)
+        const petArray = [pet.path]
+        console.log(petArray)
         // document.getElementById("imgs").src = "assets/cat.jpg".src;
         // document.getElementByClassName("sliderImages").innerHTML = "hello";
         
@@ -221,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function () {
         //   document.getElementById("imgs").innerHTML = petImg;
           // console.log(petArray)
           
-        //}
+        //
         // console.log(imageArray)
 
       //   function LoadImages() {
@@ -411,4 +410,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // Image slider
+
+
+// $('.nonloop').owlCarousel({
+//   center: true,
+//   items:2,
+//   loop:false,
+//   margin:10,
+//   responsive:{
+//       600:{
+//           items:4
+//       }
+//   }
+// });
+
+
+
+// $(document).ready(function() {
+//   ('.owl-carousel').owlCarousel();
+// });
  
+const swiper = new Swiper('.swiper', {
+  // Optional parameters
+  direction: 'horizontal',
+  loop: true,
+
+  // If we need pagination
+
+  // Navigation arrows
+  navigation: {
+    nextEl: '.sliderButtonNext',
+    prevEl: '.sliderButtonPrev',
+  },
+
+  // And if we need scrollbar
+ 
+});
