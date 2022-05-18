@@ -12,9 +12,18 @@
         <button class="sliderButton" id="prev"><i class="material-icons">chevron_left</i></button>
       </div>
       <div class="col s8">
-        <img class="usersPetImage" src="{{this.path}}" alt="Pet Image" />
-        <br>
-        <div class="pictureDate">{{this.newDate}}</div>
+        {{!-- images here --}}
+        <div class="swiper">
+          <div class="swiper-wrapper valign-wrapper">
+            {{#each path}}
+            
+              <div class="swiper-slide">
+                <img class="usersPetImage" src="/{{this}}" alt="Pet Image" />
+              </div>
+            
+            {{/each}}
+          </div>
+        </div>
       </div>
       <div class="col s2">
         <button class="sliderButton" id="next"><i class="material-icons">chevron_right</i></button>

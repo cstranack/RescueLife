@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var dateField = document.querySelector('#dateField')
         // dateField.innerHTML = new Date(pet.date).toDateString()
         const petArray = [pet.path]
-        console.log(petArray)
+    
         // document.getElementById("imgs").src = "assets/cat.jpg".src;
         // document.getElementByClassName("sliderImages").innerHTML = "hello";
         
@@ -433,7 +433,7 @@ document.addEventListener('DOMContentLoaded', function () {
 const swiper = new Swiper('.swiper', {
   // Optional parameters
   direction: 'horizontal',
-  loop: true,
+  loop: false,
 
   // If we need pagination
 

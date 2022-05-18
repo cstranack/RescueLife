@@ -14,9 +14,8 @@
       </div>
       <div class="col s8">
         {{!-- images here --}}
-        {{!-- with / works for multiple images, without works for single --}}
         <div class="swiper">
-          <div class="swiper-wrapper">
+          <div class="swiper-wrapper valign-wrapper">
             {{#each path}}
             
               <div class="swiper-slide">
@@ -26,8 +25,6 @@
             {{/each}}
           </div>
         </div>
-
-
       </div>
       <div class="col s2">
         <button class="sliderButton sliderButtonNext" id="next"><i class="material-icons">chevron_right</i></button>
