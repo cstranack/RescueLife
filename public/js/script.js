@@ -87,24 +87,20 @@ if (queryString == '?contactSaved') {
 //   }
 // }
 
-var dogs
+var dog
 
 // determining what filters have been activated
 
-function dogValidate(dogs) {
+function dogValidate() {
   if (document.getElementById("dogSwitch").checked) {
-    console.log("dog on")
-    dogs = true;
-    return dogs;
+    // console.log("dog on")
+    dog = true
   } else {
-    console.log("dog off")
-    dogs = false;
-    return dogs;
+    // console.log("dog off")
+    dog = false
+  
   }
 }
-
-console.log(dogs)
-
 
 function catValidate() {
   if (document.getElementById("catSwitch").checked) {
@@ -147,7 +143,7 @@ function otherValidate() {
 //     });
 // });
 
-
+switchArray =[]
 
 document.addEventListener('DOMContentLoaded', function () {
   var url = '/getAdoptablePets';
@@ -156,17 +152,38 @@ document.addEventListener('DOMContentLoaded', function () {
     .then(res => res.json())
     .then((data) => {
       var dataFeed = data.map((pet) => {
+        // if (document.getElementById("dogSwitch").checked) {
+        //   // console.log("dog on")
+        //   dog = true
+        // } else {
+        //   // console.log("dog off")
+        //   dog = false
+        
+        // }
+        // console.log(dog)
+
+        // petArray = [pet]
+        // for(var i = 0; i < petArray.length; i++){
+        //   // console.log(petAray[i]);
+        //   if(petArray[i].category == "dog"){
+        //       // console.log(i + " is a dog")
+        //       switchArray.push(petArray[i]);
+
+        //   } 
+        // }
+        // console.log(switchArray)
+        
+
         return `
-        <div class="card petDashCard">
-    <div class="row">
+        <div class="card petDashCard ">
+    <div class="row valign-wrapper">
         <div class="col s6">
         <img class="petImage" src="${pet.path}" alt="Pet Image">
         </div>
         <div class="col s6">
             <span class="card-title">${pet.petName}</span>
-            <p><b>Type:</b> ${pet.category}</p>
             <p><b>Age:</b> ${pet.age} year(s)</p>
-            <p><b>Breed:</b> ${pet.breed}</p>
+            <p><b>Breed:</b> ${pet.breed}, ${pet.category}</p>
             <p><b>About:</b> ${pet.description}</p>
         </div>
     </div>
@@ -181,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
+//explore page 
 document.addEventListener('DOMContentLoaded', function () {
   var url = '/getAllPets';
   var allPetsContainer = document.querySelector('#allPetsContainer')
@@ -216,15 +233,11 @@ document.addEventListener('DOMContentLoaded', function () {
       // }
 
 
-
+        //displaying the specific user profiles with all their pets 
         return `
-       
-          <div class="col l3 m4 s6 ">
-          <a href="/profileTemplate/${pet.user}" ><img class="allPetImage" src="${pet.path[0]}" alt="Pet Image"></a>
-          <p>${pet.user}</p>
-          <p></p>
-          </div>
-      
+          
+            <a href="/profileTemplate/${pet.user}" ><img class="allPetImage" src="${pet.path[0]}" alt="Pet Image"></a>
+        
         `
       
       }).join(" ");

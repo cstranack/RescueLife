@@ -7,7 +7,7 @@
 
 
 <form action="/addPet" method="POST" enctype="multipart/form-data">
-    <div id="petForm">
+    <div id="petForm" class="petForm">
         <div class="row">
             <div class="col s12">
                 <h3 class="formTitles">Pet Name</h3>
@@ -79,7 +79,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s12">
+            <div class="col s6">
                 <h3 class="formTitles">Up for adoption?</h3>
                 <div class="switch petFormSwitch">
                     <label>
@@ -90,20 +90,19 @@
                     </label>
                 </div>
             </div>
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s6">
-            <div class="row">
+            <div class="col s6">
                 <h3 class="formTitles">Description</h3>
                 <div class="input-field col s12">
                     <textarea id="description" name="description" placeholder="Description"
                         class="materialize-textarea"></textarea>
                 </div>
             </div>
+
         </div>
-        <div class="col s3">
+    </div>
+    <div class="row">
+        
+        <div class="col s6">
             <h3 class="formTitles">Hypoallergenic?</h3>
             <div class="switch petFormSwitch" id="hypoPetForm">
                 <label>
@@ -114,7 +113,7 @@
                 </label>
             </div>
         </div>
-        <div class="col s3">
+        <div class="col 6">
             <div id="SizePetForm">
                 <h3 class="formTitles">Size</h3>
                 <p>

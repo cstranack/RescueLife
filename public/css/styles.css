@@ -4,6 +4,7 @@
 
 html {
   background-color: rgb(162, 116, 92, 15%);
+  /* background-clip: padding-box; */
 }
 
 
@@ -23,6 +24,42 @@ p {
   font-family: 'Raleway', sans-serif;
 }
 
+.headerBanner{
+  position: relative;
+}
+
+
+.headerImage {
+  width: 100%;
+
+
+  /* display: none; */
+}
+
+/* .headerdecor{
+  position: absolute;
+  width: 400px;
+  top: -30px;
+  left: -30px;
+  transform: translate(-13%, 0px);
+} */
+
+
+
+
+
+.background{
+  max-width: 135%;
+  padding-top: 10%;
+  position: fixed;
+  z-index: -1;
+  overflow-x: hidden;
+  transform: translate(-13%, 0px);
+  
+  /* background-repeat: repeat-y; */
+}
+
+
 .title {
   font-size: 35px;
 }
@@ -30,6 +67,7 @@ p {
 .formTitles {
   font-size: 20px;
 }
+
 
 
 ::placeholder {
@@ -97,11 +135,24 @@ p {
 
 #signUpSubmit,
 #signInSubmit {
-  width: 100%;
-  background-color: #A2745C;
+  font-family: 'raleway', sans-serif;
+  width: 150px;
+  background-color: rgb(162, 116, 92, 15%);
   margin: 0 auto;
   display: block;
+  border: 1px solid #6f4c3c;
+  color: #6f4c3c;
 }
+
+#signUpSubmit:hover,
+#signInSubmit:hover {
+  background-color: #6f4c3c;
+  color: white;
+}
+
+
+
+
 
 .loginPage {
   padding-top: 15%;
@@ -113,6 +164,8 @@ p {
   margin-left: 1%;
   position: fixed;
 }
+
+
 
 
 .charlieImg{
@@ -189,9 +242,7 @@ p {
 /* dashboard rescues header */
 
 
-.headerImage {
-  max-width: 100%;
-}
+
 
 
 
@@ -210,19 +261,21 @@ ul {
 
 .menuLink {
   float: left;
+  padding: 20px;
 }
 
 .signOut {
   float: right;
+
 }
 
-a.menuLink {
+a.menuLink, a.signOut {
   display: block;
   padding: 20px;
   color: #AAA1A6;
 }
 
-a.menuLink:hover {
+a.menuLink:hover, a.signOut:hover {
   text-decoration: underline;
   color: #AAA1A6;
 }
@@ -286,12 +339,12 @@ a.menuLink:hover {
 .petDashCard {
   border-radius: 20px;
   background-color: #F6F6F7;
-  max-width: 50%;
-  padding: 1%;
+  max-width: 70%;
+  padding-top: 1%;
+  padding-bottom:0.5%;
   font-family: 'Raleway', sans-serif;
   margin: auto;
-  margin-top: 5%;
-  box-shadow: 10px 10px 20px #6F4C3C;
+  margin-top: 10%;
 
 
 }
@@ -308,6 +361,13 @@ a.menuLink:hover {
       float: right;
   } */
 
+
+#confirmPassword:focus,
+#password:focus,
+#username:focus,
+#name:focus,
+#loginPassword:focus,
+#loginUsername:focus,
 #petName:focus,
 #breed:focus,
 #species:focus,
@@ -351,10 +411,37 @@ a.menuLink:hover {
 
 /* PROFILE PAGE */
 
+.profileDivider{
+  width: 20%;
+  border-top: 1px solid #6f4c3c;
+  border-bottom: 0px;
+}
+
 .profileHeader {
   background-color: #F6F6F7;
+  margin-top: 0px;
   padding-top: 1%;
   padding-bottom: 1%;
+}
+
+.addPet{
+  font-family: 'Raleway', sans-serif;
+  float: right;
+  padding: 1%;
+  margin-top: 2%;
+  margin-right: 2%;
+  font-size: 20px;
+  width: 150px;
+  height: 50%;
+  border-radius: 50px;
+  background-color: rgb(162, 116, 92, 15%);
+  border: 1px solid #6f4c3c;
+  color: #6f4c3c;
+}
+
+.addPet:hover{
+  background-color: #6f4c3c;
+  color: white;
 }
 
 .dogs,
@@ -400,7 +487,8 @@ a.menuLink:hover {
 
 
 .formContainer{
-  transform: translate(50%);
+  margin-left: auto;
+  margin-right: auto;
   width: 40%;
 }
 
@@ -412,8 +500,9 @@ a.menuLink:hover {
 .usersPetCard{
   /* position: relative;
   float: right; */
-  border-radius: 15px;
+  border-radius: 30px;
   padding: 20px;
+  text-align: center;
 }
 
 /* .usersPetContainer{
@@ -423,10 +512,17 @@ a.menuLink:hover {
 /* Explore page */
 
 .allPetImage {
-  max-width: 100%;
+  max-width: 25%;
   border-radius: 15px;
   margin-top: 15px;
+  /* margin-left: auto;
+  margin-right: auto; */
 
+}
+
+
+#allPetsContainer{
+  padding-left: 20%;
 }
 
 
@@ -447,9 +543,9 @@ a.menuLink:hover {
   width: 75px;
   border-radius: 50%;
   border: 2px solid ;
-  border-color: #2a1813;
+  border-color: #6f4c3c;
   /* box-shadow: 2px 1px 7px 2px #A2745C ; */
-  color: #2a1813;
+  color: #6f4c3c;
   background-color: transparent;
   
 }
@@ -457,19 +553,22 @@ a.menuLink:hover {
 
 
 .sliderButton:active{
-  background-color: #2a1813;
-  color: #F6F6F7;
+  background-color: #6f4c3c;
+  color: white;
 }
 
 .sliderButton:hover{
-  background-color: #2a1813;
-  color: #F6F6F7;
+  background-color: #6f4c3c;
+  color: white;
   /* box-shadow: 1px 1px 3px 2px #A2745C  */
 }
 
 .sliderButton:focus{
-  color: #2a1813;
+  color: #6f4c3c;
   background-color: transparent;
+  
+  /* color: #6f4c3c;
+  background-color: transparent; */
 
 
 }
@@ -477,14 +576,22 @@ a.menuLink:hover {
 
 .editbutton{
   font-family: 'Raleway', sans-serif;
-  padding: 10%;
+  padding: 2%;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 20px;
-  width: 100%;
+  width: 20%;
   height: 50%;
-  border-radius: 15px;
+  border-radius: 30px;
   background-color: #88A0B0 ;
   border: none;
   color: white;
+}
+
+.editbutton:hover{
+  background-color: white;
+  border: 1px solid #88A0B0;
+  color: #88A0B0;
 }
 
 
@@ -506,6 +613,58 @@ a.menuLink:hover {
 }
 
 
+/* Social Page */
+
+.promoImage{
+  width:100%;
+
+}
+
+.promoDiv{
+  position: relative;
+}
+
+.promoCard{
+  position: absolute;
+  width: 15%;
+  text-align: center;
+  border-radius: 35px;
+  padding: 2%;
+  background-color: rgb(201, 121, 110, 90%);
+  bottom: 8px;
+  right: 16px;
+}
+
+.socialTitle{
+  font-size: 40px;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.socialText{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.socialImage{
+  width: 100%
+}
+
+.socialCard{
+  position: relative;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  width:70%;
+  padding-top: 1%;
+  padding-left: 1%;
+  padding-bottom: 1%;
+  padding-right: 1%;
+  border-radius: 35px;
+  text-align: center;
+}
+
 
 /* Footer */
 
@@ -513,7 +672,8 @@ a.menuLink:hover {
 .footer{
   background-color: rgb(170, 161, 166, 50%);
   height: 200px;
-
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .charlieImgFooter{
@@ -524,4 +684,25 @@ a.menuLink:hover {
   display: inline;
   z-index: 10;
   position: static;
+}
+
+.footerHeader{
+  font-weight: 500;
+  font-size: 25px;
+  color: white;
+}
+
+.footerDivider{
+  /* color:#6f4c3c; */
+  float: left;
+  width: 20%;
+  border-top: 2px solid #6f4c3c;
+  border-bottom: 0px;
+
+}
+
+.socialIcon{
+  padding-top: 5%;
+  width: 70%;
+  padding-bottom: auto;
 }

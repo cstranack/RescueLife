@@ -180,7 +180,7 @@ app.get('/petFormPage', isAuth, (req, res) => {
 //     })
 //   })
 
-
+//for dashboard
 app.get('/getAdoptablePets', isAuth, (req, res) => {
     Pet.find({ adoptable: true }, (err, docs) => {
         if (err) throw err;
@@ -260,17 +260,17 @@ app.get('/signout', (req, res) => {
 });
 
 //sending data to the database
-app.post('/addContact', (req, res) => {
-    const { name, email, number } = req.body;
-    var contact = new Contact({
-        user: req.user.id,
-        name,
-        email,
-        number
-    });
-    contact.save();
-    res.redirect('/dashboard?contactSaved');
-});
+// app.post('/addContact', (req, res) => {
+//     const { name, email, number } = req.body;
+//     var contact = new Contact({
+//         user: req.user.id,
+//         name,
+//         email,
+//         number
+//     });
+//     contact.save();
+//     res.redirect('/dashboard?contactSaved');
+// });
 
 
 
