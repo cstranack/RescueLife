@@ -686,6 +686,12 @@ a.menuLink:hover, a.signOut:hover {
   position: static;
 }
 
+.aboutPageImage{
+  width: 100%;
+  border-radius: 30px;
+  margin-bottom: 15%;
+}
+
 .footerHeader{
   font-weight: 500;
   font-size: 25px;
@@ -711,4 +717,7 @@ a.menuLink:hover, a.signOut:hover {
 .character-counter{
   display: none;
 }
+
+
+
 
