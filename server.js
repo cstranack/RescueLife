@@ -274,7 +274,7 @@ app.get('/signout', (req, res) => {
 
 
 
-app.post('/addPet', upload.array('images', 5), function (req, res, next) {
+app.post('/addPet', upload.array('images', 10), function (req, res, next) {
     const { petName, adoptable, category, breed, species, age, size, hypo, sex, description, title, comment } = req.body;
     const imagePathArray = []
     console.log(req.files.length)

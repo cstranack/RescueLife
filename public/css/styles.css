@@ -708,7 +708,7 @@ a.menuLink:hover, a.signOut:hover {
 }
 
 
-
-
-/* slider */
+.character-counter{
+  display: none;
+}
 
